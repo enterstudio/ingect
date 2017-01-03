@@ -1,0 +1,24 @@
+{
+  "name": "ingect",
+  "description": "An ultra-minimal DI library",
+  "main": "dist/inject.min.js",
+  "authors": [
+    "Pasquale Boemio <boemianrapsodi@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "DI",
+    "library",
+    "framework"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "src",
+    "gulpfile.js",
+    "karma.conf.js",
+    "package.json"
+  ]
+}
