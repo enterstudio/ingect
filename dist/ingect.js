@@ -1,12 +1,10 @@
 /*
-  ingect v0.0.0
+  ingect v0.0.1
   
 
   @author:  Pasquale Boemio <boemianrapsodi@gmail.com>
   @license: MIT
 */
-
-'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function(obj) {
   return typeof obj;
@@ -15,6 +13,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 };
 
 (function(global) {
+  'use strict';
 
   global.G = function() {
     var resolve = function resolve(store, moduleName) {
@@ -45,6 +44,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }
 
         target[key] = value;
+
+        return true;
       }
     });
 
