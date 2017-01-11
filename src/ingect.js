@@ -11,7 +11,7 @@
 
       if(store[moduleName].resolved === undefined) {
         store[moduleName].deps.forEach(function(depName) {
-          if(depName === '$global') {
+          if(depName === '$global' && (typeof store[depName]) !== 'object') {
             deps.push(global);
             return;
           }
@@ -41,7 +41,7 @@
       }
     });
 
-    var injector = function(moduleName, module, deps = []) {
+    const injector = function(moduleName, module, deps = []) {
 
       if(arguments.length === 1) {
         return _modules[moduleName];

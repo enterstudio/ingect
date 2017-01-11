@@ -29,6 +29,22 @@ describe('Ingect module', function() {
     mut('main');
   });
 
+  it('should override $global', function(done) {
+    const global = {};
+
+    mut('$global', function() {
+      console.log('cicici');
+      return global;
+    });
+
+    mut('main', function(g) {
+      g.should.be.equal(global);
+      done();
+    }, ['$global']);
+
+    mut('main');
+  });
+
   it('should resolve the deps', function(done) {
     mut('test', module);
 
