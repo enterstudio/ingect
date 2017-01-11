@@ -1,5 +1,5 @@
 /*
-  ingect v0.0.2
+  ingect v0.0.3
   
 
   @author:  Pasquale Boemio <boemianrapsodi@gmail.com>
@@ -25,17 +25,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       if (store[moduleName].resolved === undefined) {
         store[moduleName].deps.forEach(function(depName) {
-          if (_typeof(store[depName]) === 'object') {
-            deps.push(resolve(store, depName));
+          if (depName === '$global') {
+            deps.push(global);
             return;
           }
 
-          if (window[depName] !== undefined) {
-            deps.push(window[depName]);
-            return;
-          }
-
-          throw new Error(depName + ' is an invalid dependency for module ' + moduleName);
+          deps.push(resolve(store, depName));
+          return;
         });
 
         store[moduleName].resolved = store[moduleName].module.apply(null, deps);
