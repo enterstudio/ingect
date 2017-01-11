@@ -20,6 +20,23 @@ describe('Ingect module', function() {
     done();
   });
 
+  it('should allow singleton', function(done) {
+    const register = function(m) {
+      m('test', function() {
+        return Math.random();
+      });
+    };
+    
+    register(mut);
+    mut('test').should.be.not.equal(mut('test'));
+    const other = G({
+      singleton: true
+    });
+    register(other);
+    other('test').should.be.equal(other('test'));
+    done();
+  });
+
   it('should inject the global object', function(done) {
     mut('main', function(t) {
       should.equal(t, window);

@@ -1,15 +1,16 @@
 (function(global) {
   'use strict';
 
-  global.G = function() {
+  global.G = function(opts = {}) {
     const resolve = function(store, moduleName) {
       if((typeof store[moduleName]) !== 'object') {
         throw new Error(`${ moduleName } is not defined`);
       }
 
       const deps = [];
+      let module = store[moduleName].resolved;
 
-      if(store[moduleName].resolved === undefined) {
+      if(module === undefined) {
         store[moduleName].deps.forEach(function(depName) {
           if(depName === '$global' && (typeof store[depName]) !== 'object') {
             deps.push(global);
@@ -20,10 +21,13 @@
           return;
         });
 
-        store[moduleName].resolved = store[moduleName].module.apply(null, deps);
+        module = store[moduleName].module.apply(null, deps);
+        if(opts.singleton) {
+          store[moduleName].resolved = module; 
+        }
       }
 
-      return store[moduleName].resolved;
+      return module;
     };
 
     const _modules = new Proxy({}, {
