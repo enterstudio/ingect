@@ -1,5 +1,5 @@
 /*
-  ingect v0.0.4
+  ingect v0.0.5
   
 
   @author:  Pasquale Boemio <boemianrapsodi@gmail.com>
@@ -16,14 +16,17 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   'use strict';
 
   global.G = function() {
+    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
     var resolve = function resolve(store, moduleName) {
       if (_typeof(store[moduleName]) !== 'object') {
         throw new Error(moduleName + ' is not defined');
       }
 
       var deps = [];
+      var module = store[moduleName].resolved;
 
-      if (store[moduleName].resolved === undefined) {
+      if (module === undefined) {
         store[moduleName].deps.forEach(function(depName) {
           if (depName === '$global' && _typeof(store[depName]) !== 'object') {
             deps.push(global);
@@ -34,10 +37,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           return;
         });
 
-        store[moduleName].resolved = store[moduleName].module.apply(null, deps);
+        module = store[moduleName].module.apply(null, deps);
+        if (opts.singleton) {
+          store[moduleName].resolved = module;
+        }
       }
 
-      return store[moduleName].resolved;
+      return module;
     };
 
     var _modules = new Proxy({}, {
