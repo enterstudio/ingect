@@ -1,5 +1,5 @@
 /*
-  ingect v0.0.3
+  ingect v0.0.4
   
 
   @author:  Pasquale Boemio <boemianrapsodi@gmail.com>
@@ -25,7 +25,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       if (store[moduleName].resolved === undefined) {
         store[moduleName].deps.forEach(function(depName) {
-          if (depName === '$global') {
+          if (depName === '$global' && _typeof(store[depName]) !== 'object') {
             deps.push(global);
             return;
           }
