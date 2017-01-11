@@ -33,7 +33,6 @@ describe('Ingect module', function() {
     const global = {};
 
     mut('$global', function() {
-      console.log('cicici');
       return global;
     });
 
