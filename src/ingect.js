@@ -11,17 +11,13 @@
 
       if(store[moduleName].resolved === undefined) {
         store[moduleName].deps.forEach(function(depName) {
-          if(typeof(store[depName]) === 'object') {
-            deps.push(resolve(store, depName));
+          if(depName === '$global') {
+            deps.push(global);
             return;
           }
 
-          if(window[depName] !== undefined) {
-            deps.push(window[depName]);
-            return;
-          }
-
-          throw new Error(`${ depName } is an invalid dependency for module ${ moduleName }`);
+          deps.push(resolve(store, depName));
+          return;
         });
 
         store[moduleName].resolved = store[moduleName].module.apply(null, deps);

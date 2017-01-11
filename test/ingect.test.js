@@ -20,13 +20,11 @@ describe('Ingect module', function() {
     done();
   });
 
-  it('should inject global modules', function(done) {
-    window.testModule = {};
-
+  it('should inject the global object', function(done) {
     mut('main', function(t) {
-      t.should.be.equal(window.testModule);
+      should.equal(t, window);
       done();
-    }, ['testModule']);
+    }, ['$global']);
 
     mut('main');
   });
