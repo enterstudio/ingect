@@ -20,6 +20,17 @@ describe('Ingect module', function() {
     done();
   });
 
+  it('should inject global modules', function(done) {
+    window.testModule = {};
+
+    mut('main', function(t) {
+      t.should.be.equal(window.testModule);
+      done();
+    }, ['testModule']);
+
+    mut('main');
+  });
+
   it('should resolve the deps', function(done) {
     mut('test', module);
 
