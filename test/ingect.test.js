@@ -20,22 +20,22 @@ describe('Ingect module', function() {
     done();
   });
 
-  it('should allow singleton', function(done) {
-    const register = function(m) {
-      m('test', function() {
-        return Math.random();
-      });
-    };
+  //it('should allow singleton', function(done) {
+    //const register = function(m) {
+      //m('test', function() {
+        //return Math.random();
+      //});
+    //};
     
-    register(mut);
-    mut('test').should.be.not.equal(mut('test'));
-    const other = G({
-      singleton: true
-    });
-    register(other);
-    other('test').should.be.equal(other('test'));
-    done();
-  });
+    //register(mut);
+    //mut('test').should.be.not.equal(mut('test'));
+    //const other = G({
+      //singleton: true
+    //});
+    //register(other);
+    //other('test').should.be.equal(other('test'));
+    //done();
+  //});
 
   it('should inject the global object', function(done) {
     mut('main', function(t) {
@@ -46,20 +46,20 @@ describe('Ingect module', function() {
     mut('main');
   });
 
-  it('should override $global', function(done) {
-    const global = {};
+  //it('should override $global', function(done) {
+    //const global = {};
 
-    mut('$global', function() {
-      return global;
-    });
+    //mut('$global', function() {
+      //return global;
+    //});
 
-    mut('main', function(g) {
-      g.should.be.equal(global);
-      done();
-    }, ['$global']);
+    //mut('main', function(g) {
+      //g.should.be.equal(global);
+      //done();
+    //}, ['$global']);
 
-    mut('main');
-  });
+    //mut('main');
+  //});
 
   it('should resolve the deps', function(done) {
     mut('test', module);

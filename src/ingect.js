@@ -12,7 +12,7 @@
 
       if(module === undefined) {
         store[moduleName].deps.forEach(function(depName) {
-          if(depName === '$global' && (typeof store[depName]) !== 'object') {
+          if(depName === '$global') {
             deps.push(global);
             return;
           }
@@ -22,9 +22,7 @@
         });
 
         module = store[moduleName].module.apply(null, deps);
-        if(opts.singleton) {
-          store[moduleName].resolved = module; 
-        }
+        store[moduleName].resolved = module; 
       }
 
       return module;
