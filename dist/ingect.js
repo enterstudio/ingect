@@ -1,5 +1,5 @@
 /*
-  ingect v0.0.5
+  ingect v0.0.6
   
 
   @author:  Pasquale Boemio <boemianrapsodi@gmail.com>
@@ -28,7 +28,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       if (module === undefined) {
         store[moduleName].deps.forEach(function(depName) {
-          if (depName === '$global' && _typeof(store[depName]) !== 'object') {
+          if (depName === '$global') {
             deps.push(global);
             return;
           }
@@ -38,9 +38,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         });
 
         module = store[moduleName].module.apply(null, deps);
-        if (opts.singleton) {
-          store[moduleName].resolved = module;
-        }
+        store[moduleName].resolved = module;
       }
 
       return module;
