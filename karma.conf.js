@@ -39,9 +39,22 @@ module.exports = function(c) {
       }
     },
 
+    babelPreprocessor: {
+      options: {
+        presets: ['es2015-script'],
+        sourceMap: 'inline'
+      },
+      filename: function(file) {
+        return file.originalPath.replace(/\.js$/, '.es5.js');
+      },
+      sourceFileName: function(file) {
+        return file.originalPath;
+      }
+    },
+
     preprocessors: {
-      [ _src ]: [ 'jshint' ],
-      [ _test ]: [ 'jshint' ]
+      [ _src ]: [ 'jshint', 'babel' ],
+      [ _test ]: [ 'jshint', 'babel' ]
     },
 
   });
