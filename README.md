@@ -1,7 +1,7 @@
 <!-- Module icon by Icons8 -->
-# <img src="https://maxcdn.icons8.com/iOS7/PNG/100/Programming/module-100.png" title="Module" width="100" height="100"> Ingect.js
+# ![Logo](https://www.dropbox.com/s/u9wt91ds2kdr260/Module-100.png?dl=1)
 
-An ultra minimal DI library.
+Ingect.js: an ultra minimal DI library.
 
 [![Build Status](https://travis-ci.org/helloIAmPau/ingect.svg?branch=master)](https://travis-ci.org/helloIAmPau/ingect)
 ![Tag](https://img.shields.io/github/tag/helloiampau/ingect.svg)
